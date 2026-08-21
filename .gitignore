@@ -1,0 +1,9 @@
+# .gitignore – ReelSense AI
+node_modules/
+dist/
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+.vite/

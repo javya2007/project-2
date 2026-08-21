@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReelSense AI - Turn Your Scroll Into Your Skill</title>
+
+  <!-- Google Fonts: Inter & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header Navbar -->
+    <header class="app-header">
+      <div class="brand-container">
+        <div class="brand-logo-icon">⚡</div>
+        <div class="brand-info">
+          <span class="brand-title">ReelSense AI</span>
+          <span class="brand-tagline">"Turn Your Scroll Into Your Skill."</span>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
+        <button class="nav-tab active" data-view="feed"><i data-lucide="play-square"></i> Home</button>
+        <button class="nav-tab" data-view="explore"><i data-lucide="compass"></i> Explore & Extract</button>
+        <button class="nav-tab" data-view="ai"><i data-lucide="sparkles"></i> AI Insights</button>
+        <button class="nav-tab" data-view="interests"><i data-lucide="bar-chart-2"></i> Interests</button>
+        <button class="nav-tab" data-view="saved"><i data-lucide="bookmark"></i> Saved</button>
+        <button class="nav-tab" data-view="about"><i data-lucide="info"></i> About</button>
+      </nav>
+
+      <!-- Main Test Case Demo Trigger Button -->
+      <button class="btn-preset-testcase" id="btn-run-testcase" title="Simulates Main Test Case sequence automatically">
+        <i data-lucide="zap"></i> Run Main Test Case
+      </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- 1. Reel Feed View -->
+      <section id="feed-view" class="view-section active">
+        <div class="reel-feed-container" id="reel-feed-container">
+          <!-- Dynamically populated reel cards -->
+        </div>
+      </section>
+
+      <!-- 2. Explore / Search, Filters & Unlimited Reels Extractor View -->
+      <section id="explore-view" class="view-section">
+        <!-- Unlimited Reels Extractor Form Card -->
+        <div class="dashboard-card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.12)); border: 1px solid var(--accent-primary);">
+          <div class="card-title-group">
+            <span class="card-title"><i data-lucide="sparkles" style="color: var(--accent-cyan);"></i> Unlimited Reels Extractor Form</span>
+            <span class="badge-core-tech">Dynamic AI Generator</span>
+          </div>
+          <p class="insight-reasoning-text">Extract or generate custom unlimited Reels based on target technology topics, platform source, content filter, and quantity.</p>
+          
+          <form id="unlimited-reels-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 0.8rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+              <label class="insight-label">Target Topic / Category</label>
+              <select id="extract-topic" class="search-input" style="padding: 0.5rem 0.8rem; height: 42px;">
+                <option value="all">All CSE Topics</option>
+                <option value="AI">AI & Machine Learning</option>
+                <option value="DSA">DSA & Algorithms</option>
+                <option value="Java">Java & Enterprise</option>
+                <option value="Web Development">Web Development</option>
+                <option value="System Design">HLD / System Design</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="Cloud">Cloud & DevOps</option>
+                <option value="Hardware">Hardware & Setup</option>
+                <option value="DBMS">DBMS & SQL</option>
+                <option value="OS">Operating Systems</option>
+                <option value="Git/GitHub">Git & GitHub</option>
+                <option value="Career/Placements">Career & Placements</option>
+              </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+              <label class="insight-label">Platform Source</label>
+              <select id="extract-source" class="search-input" style="padding: 0.5rem 0.8rem; height: 42px;">
+                <option value="all">All (YouTube & Instagram)</option>
+                <option value="youtube">YouTube Shorts</option>
+                <option value="instagram">Instagram Reels</option>
+              </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+              <label class="insight-label">Content Filter</label>
+              <select id="extract-filter" class="search-input" style="padding: 0.5rem 0.8rem; height: 42px;">
+                <option value="core">Core Educational Only</option>
+                <option value="all">Include Memes & Hype</option>
+              </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+              <label class="insight-label">Extraction Count</label>
+              <select id="extract-count" class="search-input" style="padding: 0.5rem 0.8rem; height: 42px;">
+                <option value="5">5 Unlimited Reels</option>
+                <option value="10">10 Unlimited Reels</option>
+                <option value="25">25 Unlimited Reels</option>
+                <option value="50">50 Unlimited Reels</option>
+              </select>
+            </div>
+
+            <div style="grid-column: 1/-1; display: flex; justify-content: flex-end; margin-top: 0.4rem;">
+              <button type="submit" class="btn-preset-testcase" style="padding: 0.68rem 1.5rem; font-size: 0.9rem;">
+                <i data-lucide="download-cloud"></i> Extract Unlimited Reels Now
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="explore-header">
+          <div class="search-bar-wrapper">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search Reels by title, tag, topic or category..." />
+          </div>
+
+          <!-- Source Platform Filters -->
+          <div class="filter-pills-row" id="source-filters">
+            <button class="filter-pill active" data-source="all">All Sources</button>
+            <button class="filter-pill" data-source="youtube"><i data-lucide="youtube" style="width:14px; display:inline-block; vertical-align:middle;"></i> YouTube Shorts</button>
+            <button class="filter-pill" data-source="instagram"><i data-lucide="instagram" style="width:14px; display:inline-block; vertical-align:middle;"></i> Instagram Reels</button>
+          </div>
+
+          <!-- Topic Category Filters -->
+          <div class="filter-pills-row" id="category-filters">
+            <button class="filter-pill active" data-category="all">All Topics</button>
+            <button class="filter-pill" data-category="Software Engineering">Software Engineering</button>
+            <button class="filter-pill" data-category="DSA">DSA</button>
+            <button class="filter-pill" data-category="AI">AI</button>
+            <button class="filter-pill" data-category="System Design">System Design</button>
+            <button class="filter-pill" data-category="Web Development">Web Development</button>
+            <button class="filter-pill" data-category="Cybersecurity">Cybersecurity</button>
+            <button class="filter-pill" data-category="Cloud">Cloud</button>
+            <button class="filter-pill" data-category="Hardware">Hardware</button>
+            <button class="filter-pill" data-category="DBMS">DBMS</button>
+            <button class="filter-pill" data-category="OS">OS</button>
+            <button class="filter-pill" data-category="Git/GitHub">Git/GitHub</button>
+            <button class="filter-pill" data-category="Career/Placements">Career/Placements</button>
+          </div>
+        </div>
+        <div class="reels-grid" id="explore-reels-grid">
+          <!-- Dynamically populated explore cards -->
+        </div>
+      </section>
+
+      <!-- 3. AI Insights View -->
+      <section id="ai-view" class="view-section">
+        <div class="about-hero">
+          <div class="card-title"><i data-lucide="cpu" style="color: var(--accent-cyan);"></i> Real-Time AI Interest Convergence</div>
+          <p class="insight-reasoning-text" id="ai-view-summary">
+            ReelSense AI evaluates multi-reel context and weighted interactions (Save: +5, Share: +5, Replay: +4, Like: +3, Watch: +2, Skip: -2) to discover genuine career intent.
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="insight-label">CURRENT DETECTED TECH INTEREST</div>
+            <div class="insight-value" id="ai-view-primary-interest" style="font-size: 1.3rem; color: var(--accent-cyan);">
+              Software Engineering / Technical Interviews
+            </div>
+            <div class="metrics-badge-row">
+              <span class="metric-pill confidence" id="ai-view-confidence"><i data-lucide="check-circle"></i> 96% Confidence</span>
+              <span class="metric-pill difficulty"><i data-lucide="award"></i> Level: Advanced</span>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="insight-label">SEMANTIC REASONING ("WHY")</div>
+            <p class="insight-reasoning-text" id="ai-view-reasoning">
+              Multi-signal analysis detected high engagement with career engineering & DSA problem solving (+5 Save on SWE, +4 Replay on Interviews, +4 Replay on DSA). The system ignored surface Java meme likes and penalized low-value AI job-hype (-2 Skip), identifying your core goal: Cracking Big-Tech Software Engineering Interviews.
+            </p>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="insight-label" style="color: var(--accent-emerald);">NEXT RECOMMENDED TECH REEL</div>
+          <div class="recommended-reel-box" id="ai-view-recommendation-box">
+            <div class="rec-title">How DSA Is Used in Real Software Engineering Interviews</div>
+            <p class="insight-reasoning-text">
+              Connecting theoretical DSA (Trees, Tries, Hash Maps) to real production systems like search auto-complete and caching layers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Interests Analytics Dashboard View -->
+      <section id="interests-view" class="view-section">
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="card-title-group">
+              <span class="card-title"><i data-lucide="radar" style="color: var(--accent-primary);"></i> Skill Affinity Radar</span>
+              <span class="badge-core-tech">Live Vector Map</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="radarChart"></canvas>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="card-title-group">
+              <span class="card-title"><i data-lucide="activity" style="color: var(--accent-cyan);"></i> Interest Breakdown</span>
+              <span class="insight-label">Percentages</span>
+            </div>
+            <div class="skill-bars-list" id="skill-bars-container">
+              <!-- Dynamically populated percentage skill bars -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Saved Reels View -->
+      <section id="saved-view" class="view-section">
+        <div class="card-title-group" style="margin-bottom: 1rem;">
+          <span class="card-title"><i data-lucide="bookmark" style="color: var(--accent-amber);"></i> Bookmarked Educational Reels</span>
+          <span class="insight-label" id="saved-count-label">2 Reels Saved</span>
+        </div>
+        <div class="reels-grid" id="saved-reels-grid">
+          <!-- Dynamically populated saved reels -->
+        </div>
+      </section>
+
+      <!-- 6. About & API Integration Roadmap View -->
+      <section id="about-view" class="view-section">
+        <div class="about-hero">
+          <h2 style="font-size: 1.6rem; font-weight: 800;">Don't Stop Scrolling. Start Learning.</h2>
+          <p class="insight-reasoning-text">
+            B.Tech/CSE students spend countless hours on Instagram Reels and YouTube Shorts. Traditional algorithms maximize watch time by serving surface entertainment, memes, or repetitive hype. 
+            <strong>ReelSense AI</strong> leverages interaction weighting and multi-reel semantic context to transform scrolling into targeted skill acquisition.
+          </p>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-title"><i data-lucide="git-branch" style="color: var(--accent-primary);"></i> System Architecture & Core Flow</div>
+          
+          <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <div class="flow-step-card">
+              <div class="step-num">1</div>
+              <div>
+                <strong style="color: #fff;">Watch Reels</strong>
+                <p class="insight-reasoning-text">Student engages naturally with vertical video feed.</p>
+              </div>
+            </div>
+
+            <div class="flow-step-card">
+              <div class="step-num">2</div>
+              <div>
+                <strong style="color: #fff;">Track Multi-Weighted Interactions</strong>
+                <p class="insight-reasoning-text">Save (+5), Share (+5), Replay (+4), Like (+3), Watch (+2), Skip (-2) stored in local state.</p>
+              </div>
+            </div>
+
+            <div class="flow-step-card">
+              <div class="step-num">3</div>
+              <div>
+                <strong style="color: #fff;">Analyze Multi-Reel Context</strong>
+                <p class="insight-reasoning-text">Synthesizes sequence of interactions to differentiate surface memes from career intent.</p>
+              </div>
+            </div>
+
+            <div class="flow-step-card">
+              <div class="step-num">4</div>
+              <div>
+                <strong style="color: #fff;">Recommend & Explain</strong>
+                <p class="insight-reasoning-text">Filters out clickbait and presents next high-value technical Reel with transparent AI reasoning.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-title"><i data-lucide="layers" style="color: var(--accent-emerald);"></i> Future API Integration Roadmap</div>
+          <p class="insight-reasoning-text">
+            This frontend prototype demonstrates the exact data model ready for production backend deployment using:
+          </p>
+          <ul style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.7; font-size: 0.9rem;">
+            <li><strong>Instagram Graph API</strong>: Ingest student saved/liked video metadata & captions via OAuth tokens.</li>
+            <li><strong>YouTube Data API v3</strong>: Retrieve watch time percentages, replays, and playlist categories.</li>
+            <li><strong>Vector Embeddings & LLM Classifier</strong>: OpenAI `text-embedding-3-small` / Gemini Pro embeddings for real-time semantic similarity matching.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Slide-over AI Insight Drawer Overlay -->
+    <aside class="ai-insight-drawer" id="ai-insight-drawer">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <i data-lucide="sparkles"></i> AI Insight Card
+        </div>
+        <button class="btn-close-drawer" id="btn-close-drawer">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <div class="insight-card-block">
+          <div class="insight-label">CURRENT REEL</div>
+          <div class="insight-value" id="drawer-current-reel-title">Java NullPointerException Meme</div>
+          <span class="badge-source instagram" id="drawer-current-reel-source">Instagram Reel</span>
+        </div>
+
+        <div class="insight-card-block">
+          <div class="insight-label">EDUCATIONAL UTILITY SCORE FOR STUDENTS</div>
+          <div class="insight-value" id="drawer-edu-score" style="color: var(--accent-emerald);">95 / 100</div>
+          <p class="insight-reasoning-text" id="drawer-edu-score-desc">
+            Calculated based on concept depth, practical code syntax, system design architecture relevance, and placement interview utility.
+          </p>
+        </div>
+
+        <div class="insight-card-block">
+          <div class="insight-label">INTEREST DETECTED</div>
+          <div class="insight-value" id="drawer-interest-detected" style="color: var(--accent-cyan);">Software Engineering / Technical Interviews</div>
+          <div class="metrics-badge-row">
+            <span class="metric-pill confidence" id="drawer-confidence"><i data-lucide="check-circle"></i> 96% Match</span>
+            <span class="metric-pill difficulty" id="drawer-difficulty"><i data-lucide="award"></i> Level: Advanced</span>
+          </div>
+        </div>
+
+        <div class="insight-card-block">
+          <div class="insight-label">WHY (SEMANTIC REASONING)</div>
+          <p class="insight-reasoning-text" id="drawer-why-text">
+            Analyzed recent interaction sequence: Save (+5) on Software Engineer lifestyle, Replay (+4) on Coding Interview prep, Replay (+4) on DSA, and Skip (-2) on AI Job-Hype. Java meme likes were categorized as entertainment, while core career skills surfaced as primary interest.
+          </p>
+        </div>
+
+        <div class="recommended-reel-box">
+          <div class="insight-label" style="color: var(--accent-emerald);">RECOMMENDED TECH REEL</div>
+          <div class="rec-title" id="drawer-rec-title">How DSA Is Used in Real Software Engineering Interviews</div>
+          <div class="insight-label" style="margin-top: 0.4rem;">CATEGORY</div>
+          <div style="font-size: 0.85rem; font-weight: 700; color: #fff;" id="drawer-rec-category">Software Engineering & System Design</div>
+          <div class="insight-label" style="margin-top: 0.4rem;">WHY THIS RECOMMENDATION</div>
+          <p class="insight-reasoning-text" id="drawer-why-rec">
+            ReelSense AI selected this Reel because it directly connects algorithmic DSA patterns to real production software engineering architecture, satisfying your detected interview prep interest without repeating generic memes.
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+      <button class="mobile-nav-item active" data-view="feed"><i data-lucide="play-square"></i> Home</button>
+      <button class="mobile-nav-item" data-view="explore"><i data-lucide="compass"></i> Explore</button>
+      <button class="mobile-nav-item" data-view="ai"><i data-lucide="sparkles"></i> AI</button>
+      <button class="mobile-nav-item" data-view="interests"><i data-lucide="bar-chart-2"></i> Interests</button>
+      <button class="mobile-nav-item" data-view="saved"><i data-lucide="bookmark"></i> Saved</button>
+    </nav>
+
+    <!-- Live Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+  </div>
+
+  <!-- Application Bundle -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
